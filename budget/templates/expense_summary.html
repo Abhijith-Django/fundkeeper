@@ -1,0 +1,89 @@
+{%extends 'base.html'%}
+
+{%block main_block%}
+
+{%load custom_filters%}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="fw-bold text-center">Total Expense:{{expense_total.total}}</h2>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                     <div>
+                      <canvas id="myChart"></canvas>
+                     </div>
+                </div>
+                <div class="col-4">
+                  {%for ec in expense_category%}
+                  <label for="">{{ec.category}}|upper </label>
+                  <div class="progress my-3" role="progressbar" aria-label="Info example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-info text-dark" style="width:{{ec.total|percentage:expense_total.total}}%">{{ec.total|percentage:expense_total.total}}%</div>
+                  </div>
+                  {%endfor%}
+                </div>
+                <div class="col-4">
+                   <div>
+                    <canvas id="priorityChart"></canvas>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{%block script_block%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: [{%for ec in expense_category%} "{{ec.category}}", {%endfor%}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{%for ec in expense_category%} "{{ec.total}}", {%endfor%}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  // priority chart 
+
+  const ctx1 = document.getElementById('priorityChart');
+
+  new Chart(ctx1, {
+    type: 'doughnut',
+    data: {
+      labels: [{%for ep in expense_priority%} "{{ep.priority}}", {%endfor%}],
+      datasets: [{
+        label: '# of Votes',
+        data: [{%for ep in expense_priority%} "{{ep.total}}", {%endfor%}],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+ 
+{%endblock%}

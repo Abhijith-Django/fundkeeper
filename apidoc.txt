@@ -1,0 +1,123 @@
+authentication
+
+schema:User
+
+Attributes:["username","email","password"]
+
+1)Api for creating user account
+
+    url:http://127.0.0.1:8000/api/register/
+
+    method:POST
+
+    body:{
+        "username",
+        "email",
+        "password"
+    }
+
+schema:expense
+Attributes:["id","title","amount","category","user_object","priority","created_date"]
+
+1)Api for listing all expenses
+
+    url:http://127.0.0.1:8000/api/expenses/
+
+    method:GET
+
+    body:nill
+
+    authentication:{username,password} Basic Authentication
+
+2)APi for adding a new expense
+
+    url:http://127.0.0.1:8000/api/expenses/
+
+    method:POST
+
+    body:{title,amount,category,priority}
+
+    authentication:Basic Authentication
+
+3)APi for fetching expense detail
+
+    url:http://127.0.0.1:8000/api/expenses/{id}/
+
+    method:GET
+
+    body:nill
+
+    authentication:Basic Authentication
+
+4)APi for updating expense detail
+
+    url:http://127.0.0.1:8000/api/expenses/{id}/
+
+    method:PUT
+
+    body:{title,amount,category,priority}
+
+    authentication:Basic Authentication
+
+5)APi for delete expense detail
+
+    url:http://127.0.0.1:8000/api/expenses/{id}/
+
+    method:GET
+
+    body:nill
+
+    authentication:Basic Authentication
+
+schema:income
+Attributes:{id,title,amount,category,created_date}
+
+1)Api for listing all incomes
+
+    url:http://127.0.0.1:8000/api/incomes/
+
+    method:GET
+
+    body:nill
+
+    authentication:{username,password} Basic Authentication
+
+2)APi for adding a new income
+
+    url:http://127.0.0.1:8000/api/incomes/
+
+    method:POST
+
+    body:{title,amount,category,created_date}
+
+    authentication:Basic Authentication
+
+3)APi for fetching income detail
+
+    url:http://127.0.0.1:8000/api/incomes/{id}/
+
+    method:GET
+
+    body:nill
+
+    authentication:Basic Authentication
+
+4)APi for updating income detail
+
+    url:http://127.0.0.1:8000/api/incomes/{id}/
+
+    method:PUT
+
+    body:{title,amount,category,created_date}
+
+    authentication:Basic Authentication
+
+5)APi for delete income detail
+
+    url:http://127.0.0.1:8000/api/incomes/{id}/
+
+    method:DELETE
+
+    body:nill
+
+    authentication:Basic Authentication
